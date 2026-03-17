@@ -1,5 +1,7 @@
 package com.example.springboot.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.springboot.dto.PurchaseRequest;
@@ -43,5 +45,14 @@ public class PurchaseService {
         purchaseRepository.save(purchase);
 
         return response;
+    }
+
+    public Page<PurchaseRequest> getPurchaseList(Pageable pageable) {
+        return purchaseRepository.findAll(pageable).map(purchase -> {
+            PurchaseRequest request = new PurchaseRequest();
+            request.setUserId(purchase.getUser().getId());
+            request.setProductId(purchase.getProduct().getId());
+            return request;
+        });
     }
 }

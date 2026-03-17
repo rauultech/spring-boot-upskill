@@ -1,7 +1,7 @@
 package com.example.springboot.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.springboot.entity.User;
@@ -24,7 +24,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll().stream().toList();
+    public Page<User> getUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }

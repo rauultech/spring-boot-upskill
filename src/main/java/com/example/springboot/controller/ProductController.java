@@ -3,14 +3,17 @@ package com.example.springboot.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springboot.dto.ProductRequest;
 import com.example.springboot.entity.Product;
 import com.example.springboot.services.ProductService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -24,9 +27,8 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public Product saveProduct(@RequestBody Product product) {
-        productService.saveProduct(product);
-        return product;
+    public Product saveProduct(@Valid @RequestBody ProductRequest product) {
+       return productService.saveProduct(product);
     }
     
     @GetMapping("/{id}")
@@ -35,7 +37,7 @@ public class ProductController {
     }
     
     @GetMapping("/list")
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return productService.getAllProducts(pageable);
     }
 }
