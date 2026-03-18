@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Table(name = "purchases")
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
