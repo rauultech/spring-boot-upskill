@@ -8,10 +8,9 @@ import com.example.springboot.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -42,5 +41,15 @@ public class UserController {
         return userService.getUsers(pageable);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin-data")
+    public String getAdminData() {
+        return "Only admin can see this";
+    }
     
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/user-data")
+    public String getUserData() {
+        return "User / Admin data";
+    }
 }

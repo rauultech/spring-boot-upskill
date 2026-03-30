@@ -17,7 +17,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - "8080:8080"
+      - "8080:8088"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/springboot_upskill
       SPRING_DATASOURCE_USERNAME: postgres
