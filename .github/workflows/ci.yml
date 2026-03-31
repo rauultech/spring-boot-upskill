@@ -32,4 +32,4 @@ jobs:
 
       # Step D: Verify the Dockerfile still works with the newly compiled code
       - name: Build Docker Image
-        run: docker build -t my-monolith-app:test-build .
+        run: docker build -t demo-spirngboot-app:test-build .
