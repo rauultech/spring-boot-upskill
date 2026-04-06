@@ -20,7 +20,7 @@ jobs:
 
       # 1. Compile the code (Skipping tests for now!)
       - name: Build with Gradle
-        run: ./gradlew clean build -x test
+        run: ./gradlew clean build
 
       # 2. Log in to Docker Hub using the secrets you just saved
       - name: Log in to Docker Hub
@@ -36,4 +36,4 @@ jobs:
       
       # 5. NEW: Trigger Render to pull the new image
       - name: Trigger Render Deploy
-        run: curl "${{ secrets.RENDER_DEPLOY_HOOK }}"
+        run: curl "${{ secrets.RENDER_DEPLOY_HOOK }}" 

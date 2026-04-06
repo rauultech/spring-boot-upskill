@@ -1,7 +1,7 @@
 package com.example.springboot.dto;
 
 public record UserDto(
-    String id,
+    Long id,
     String name,
     String username,
     String info

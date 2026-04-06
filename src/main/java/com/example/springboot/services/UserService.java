@@ -47,7 +47,7 @@ public class UserService {
         user.setRole(request.role() != null ? request.role() : Role.USER);
         User savedUser = userRepository.save(user);
         return new UserDto(
-            String.valueOf(savedUser.getId()),
+            savedUser.getId(),
             savedUser.getName(),
             savedUser.getUsername(),
             "Additional info can go here"

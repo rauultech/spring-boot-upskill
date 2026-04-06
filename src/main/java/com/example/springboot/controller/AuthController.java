@@ -10,6 +10,8 @@ import com.example.springboot.services.CustomUserDetailsService;
 import com.example.springboot.services.JwtService;
 import com.example.springboot.services.UserService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,7 +48,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public UserDto create(@RequestBody CreateUserRequest request) {
+    public UserDto create(@Valid @RequestBody CreateUserRequest request) {
         return userService.createUser(request);
     }
     
