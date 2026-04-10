@@ -73,7 +73,7 @@ class ProductControllerTest {
         mockMvc.perform(post("/product/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
